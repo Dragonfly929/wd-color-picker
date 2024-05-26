@@ -1,0 +1,353 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+body{
+  margin: 20px 40px;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  background: #fafafa;
+}
+h1, h2, h3, h4, ul, li, a, p, input, label, button, div, footer{
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  color: #444;
+}
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 120px;
+}
+nav ul{
+  display: flex;
+  align-items: center;
+}
+nav li{
+  margin-left: 20px;
+}
+nav li a{
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8em;
+  display: block;
+  padding: 10px 16px;
+  letter-spacing: 2px;
+}
+.btn{
+  border-radius: 36px;
+  background: #FEE996;
+}
+form h2{
+  font-size: 2.4em;
+  font-weight: 900;
+  margin-bottom: 40px;
+}
+form{
+  width: 360px;
+  margin: 0 auto;
+  padding: 30px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  background: white;
+}
+input{
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  width: 100%;
+}
+label{
+  display: block;
+  margin: 20px 0 10px;
+}
+button{
+  margin-top: 30px;
+  border-radius: 36px;
+  background: #FEE996;
+  border:0;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8em;
+  display: block;
+  padding: 10px 16px;
+  letter-spacing: 2px;
+}
+.error{
+  color: #ff0099;
+  margin: 10px 2px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+header{
+  display: flex;
+  align-items: center;
+}
+header img{
+  width: 250px;
+  margin-right: 40px;
+}
+header h2{
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+header h3{
+  font-size: 1.6em;
+  margin-bottom: 10px;
+  margin-left: 2px;
+  color: #999;
+}
+header .btn{
+  margin-top: 20px;
+  padding: 12px 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 0.8em;
+}
+.recipes{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 80px;
+  margin: 80PX AUTO;
+  max-width: 1200px;
+}
+.recipe{
+  display: inline-block;
+  border-radius: 20px;
+  background: white;
+  position: relative;
+  text-align: center;
+  padding: 0 20px 30px 20px
+}
+.recipe img{
+  width: 100px;
+  margin: -30px auto 20px;
+}
+footer{
+  text-align: center;
+  margin-top: 120px;
+  color: #aaa;
+}
+
+/* --------------------- */
+.page {
+  width: 100%;
+  box-sizing: border-box
+}
+
+.feed {
+  padding: 5px 20px 30px;
+  display: grid;
+  margin-top: -4px;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  grid-column-gap: 3%;
+  grid-row-gap: 24px
+}
+
+@media screen and (max-width: 1500px) {
+  .feed {
+      grid-template-columns:repeat(3,minmax(0,1fr))
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .feed {
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      grid-column-gap: 6%
+  }
+}
+
+.feed {
+  padding: 5px 20px 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Ensure four columns */
+  grid-column-gap: 0; /* Remove any gap between columns */
+  grid-row-gap: 24px;
+}
+
+.item {
+  align-items: center;
+  position: relative;
+  animation-name: item;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  width: 85%; /* Each item occupies 25% of the container width */
+  grid-column: span 1; /* Each item spans one column */
+}
+
+
+@keyframes item {
+    0% {
+        opacity: 0
+    }
+}
+
+.palette {
+    max-width: 100%;
+    padding-bottom: 100%;
+    border-radius: 10px;
+    position: relative;
+    display: block;
+    margin-bottom: 14px;
+    overflow: hidden
+}
+
+.palette a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute
+}
+
+.place {
+    position: absolute;
+    width: 100%;
+    transform-origin: top;
+    background: grey;
+    text-align: left;
+    border-radius: 20px 20px 0 0
+}
+
+.feed .place {
+    animation-name: place
+}
+
+@keyframes place {
+    0% {
+        transform: scaleY(1.2);
+        filter: brightness(300%);
+        filter: hue-rotate(50deg)
+    }
+}
+
+.place span {
+    position: absolute;
+    text-align: center;
+    transition: all .2s;
+    bottom: 0;
+    color: #fff;
+    opacity: 0;
+    background-color: rgba(0,0,0,.1);
+    padding: 3px 6px;
+    border-radius: 0 6px 0 0;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 14px;
+    letter-spacing: 1px
+}
+
+.place span:hover {
+    background-color: rgba(0,0,0,.2)
+}
+
+.place span:active {
+    background-color: rgba(0,0,0,.4)
+}
+
+.c0 {
+    padding-bottom: 41%;
+    animation-duration: 1s;
+    border-radius: 0;
+    border-radius: 10px 10px 0 0
+}
+
+.c1 {
+    padding-bottom: 67%;
+    animation-duration: .6s
+}
+
+.c2 {
+    padding-bottom: 85%;
+    animation-duration: .2s
+}
+
+.c3 {
+    padding-bottom: 100%;
+    animation-duration: 0s;
+    border-radius: 20px 20px 0 0
+}
+
+.place:hover span {
+    opacity: 1
+}
+
+.item .actions {
+    position: relative;
+    width: 100%;
+    justify-content: flex-start
+}
+
+.item .date {
+    opacity: .7;
+    flex-shrink: 0
+}
+
+.item .line {
+    position: absolute;
+    bottom: -1px;
+    left: 0
+}
+
+/* Style for button container */
+.button-container {
+  display: flex;
+  justify-content: center; /* horizontally center items */
+  align-items: center; /* vertically center items */
+  margin-top: 20px; /* Adjust the top margin as needed */
+  grid-column: span 5; /* Spanning five columns */
+}
+
+/* Style for "View More" and "View Less" buttons */
+.button-container button {
+  border-radius: 36px;
+  background: #FEE996;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #21adb0;
+}
+
+
+
+
+
+/* Style for "View More" button */
+#viewMoreButton {
+  border-radius: 36px;
+  background: #FEE996;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#viewMoreButton:hover {
+  background-color: #21adb0;
+}
+
+/* Style for "View More" button */
+#viewLessButton {
+  border-radius: 36px;
+  background: #FEE996;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#viewLessButton:hover {
+  background-color: #21adb0;
+}
