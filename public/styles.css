@@ -597,3 +597,100 @@ button:hover {
   height: 1em;
   margin-bottom: 10px;
 }
+
+/* Define a media query for screens with a maximum width of 768px (typical for phones) */
+@media (max-width: 768px) {
+  /* Adjust body margin for smaller screens */
+  body {
+    margin: 10px;
+    font-size: 1rem; /* Adjust font size for smaller screens */
+  }
+
+  /* Adjust header styles */
+  header {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items */
+  }
+
+  header img {
+    width: 200px; /* Decrease logo size for smaller screens */
+    margin: 0; /* Remove margin */
+    margin-bottom: 20px; /* Add bottom margin for spacing */
+  }
+
+  header h2 {
+    font-size: 2em; /* Decrease heading size */
+  }
+
+  header h3 {
+    font-size: 1.2em; /* Decrease subheading size */
+    margin: 0; /* Remove margin */
+  }
+
+  /* Adjust navigation menu */
+  nav {
+    margin-bottom: 60px; /* Reduce bottom margin */
+  }
+
+  nav ul {
+    flex-direction: column; /* Stack menu items vertically */
+    align-items: center; /* Center align items */
+  }
+
+  nav li {
+    margin: 10px 0; /* Add margin between menu items */
+  }
+
+  nav li a {
+    font-size: 1em; /* Adjust font size for smaller screens */
+  }
+
+  /* Adjust form styles */
+  form {
+    width: 90%; /* Adjust form width */
+    padding: 20px; /* Increase padding */
+  }
+
+  form h2 {
+    font-size: 2em; /* Decrease heading size */
+    margin-bottom: 20px; /* Reduce bottom margin */
+  }
+
+  input,
+  label,
+  button {
+    font-size: 1em; /* Adjust font size for smaller screens */
+  }
+
+  label {
+    margin: 10px 0; /* Add margin between labels */
+  }
+
+  /* Adjust grid layout for recipe cards */
+  .recipes {
+    grid-template-columns: 1fr; /* Display one column on smaller screens */
+    margin: 40px auto; /* Adjust margin */
+  }
+
+  .recipe {
+    width: 90%; /* Adjust card width */
+    margin: 0 auto; /* Center align cards */
+  }
+
+  .recipe img {
+    width: 80px; /* Decrease image size */
+    margin: 0 auto 10px; /* Adjust margin */
+  }
+
+  /* Adjust footer styles */
+  footer {
+    margin-top: 60px; /* Reduce top margin */
+  }
+
+  /* Adjust button styles */
+  .button-container button,
+  .add-favorite-button {
+    font-size: 0.9em; /* Decrease button font size */
+    padding: 8px 16px; /* Adjust button padding */
+  }
+}
