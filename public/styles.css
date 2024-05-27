@@ -351,3 +351,249 @@ footer{
 #viewLessButton:hover {
   background-color: #21adb0;
 }
+
+.card {
+  background-color: var(--bg-color);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 2em;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.color-picker-container {
+  margin-bottom: 20px;
+}
+
+.favorites-container,
+.popular-container {
+  margin-bottom: 20px;
+}
+
+.container-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.color-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.color-box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.color-box:hover {
+  transform: scale(1.05);
+}
+
+.color-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.like-button,
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 0.6em;
+  transition: background-color 0.3s;
+}
+
+.like-button:hover,
+.remove-button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.uploaded-image {
+    max-height: 300px;
+    max-width: 100%; /* Ensures the width adjusts proportionally */
+    background-color: transparent;
+    display: block; /* Ensures the image behaves as a block element */
+    width: auto; /* Allows the image to adjust its width */
+    height: auto; /* Allows the image to adjust its height */
+    object-fit: contain; /* Maintains aspect ratio without deformation */
+}
+
+.download-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.download-container button {
+    border-radius: 36px; /* Apply the same border-radius as the "Add to Favorites" button */
+    background: #FEE996;
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.download-container button:hover {
+    background-color: #21adb0;
+}
+
+.read-the-docs {
+  color: #888;
+  margin-top: 20px;
+  font-size: 1.1em;
+}
+
+.color-picker-image-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.color-picker-container,
+.image-upload-container {
+  width: 48%;
+}
+
+.image-container {
+    width: auto; /* Allow container to adjust dynamically based on content */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden; /* Add overflow: hidden to prevent image overflow */
+}
+
+@media (max-width: 768px) {
+.color-picker-image-container {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.color-picker-container,
+.image-upload-container,
+.image-container {
+    width: 100%;
+}
+}
+
+
+.favorite-button-container {
+  margin-top: 20px;
+}
+
+/* Style for "View More" button */
+.add-favorite-button {
+    border-radius: 36px;
+    background: #FEE996;
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.add-favorite-button:hover {
+    background-color: #21adb0;
+}
+
+
+.space {
+  width: 5px;
+}
+
+.light {
+  --bg-color: #ffffff;
+}
+
+.dark {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+}
+
+/* Basic reset for form elements */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f9f9f9;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  border-radius: 36px;
+  background: #FEE996;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1a8473;
+}
+
+/* Custom styles for the select element */
+.role-select-custom {
+  appearance: none;
+  background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray"><path d="M5.5 8L8 10.5 10.5 8z"/></svg>') no-repeat right 10px center;
+  background-size: 16px 16px;
+  padding-right: 30px;
+  position: relative;
+}
+
+.role-select-custom::-ms-expand {
+  display: none; /* Hide default dropdown arrow in IE */
+}
+
+.role-select-custom option {
+  padding: 10px;
+}
+
+/* Error message styles */
+.role-error-custom {
+  color: red;
+  font-size: 0.9em;
+  height: 1em;
+  margin-bottom: 10px;
+}

@@ -5,9 +5,20 @@
   <label for="email">Email</label>
   <input type="text" name="email" required />
   <div class="email error"></div>
+  
   <label for="password">Password</label>
   <input type="password" name="password" required />
   <div class="password error"></div>
+  
+  <!-- Role selection -->
+  <label for="role">Role</label>
+  <select name="role" class="role-select-custom" required>
+    <option value="VISITOR">Visitor</option>
+    <option value="WRITER">Writer</option>
+    <option value="ADMIN">Admin</option>
+  </select>
+  <div class="role-error-custom"></div>
+  
   <button>Sign up</button>
 </form>
 
@@ -17,6 +28,7 @@
   const form = document.querySelector('form');
   const emailError = document.querySelector('.email.error');
   const passwordError = document.querySelector('.password.error');
+  const roleError = document.querySelector('.role-error-custom');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -24,15 +36,17 @@
     // reset errors
     emailError.textContent = '';
     passwordError.textContent = '';
+    roleError.textContent = '';
 
     // get values
     const email = form.email.value;
     const password = form.password.value;
+    const role = form.role.value;
 
     try {
       const res = await fetch('/signup', { 
         method: 'POST', 
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, role }),
         headers: {'Content-Type': 'application/json'}
       });
       const data = await res.json();
@@ -40,15 +54,14 @@
       if (data.errors) {
         emailError.textContent = data.errors.email;
         passwordError.textContent = data.errors.password;
+        roleError.textContent = data.errors.role;
       }
       if (data.user) {
         location.assign('/');
       }
-
     }
     catch (err) {
       console.log(err);
     }
-
   });
 </script>
