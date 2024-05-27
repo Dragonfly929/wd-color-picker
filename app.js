@@ -1,3 +1,5 @@
+require('dotenv').config(); // Load environment variables
+
 require('@babel/register')({
   extensions: ['.js', '.jsx']
 });
@@ -19,7 +21,7 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://user:password321@cluster0.bjoawvi.mongodb.net/node-auth';
+const dbURI = process.env.MONGODB_URI; // Use environment variable
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
