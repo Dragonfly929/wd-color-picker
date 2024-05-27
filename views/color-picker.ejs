@@ -1,0 +1,424 @@
+<%- include('partials/header'); -%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Picker App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color, #333);
+    }
+
+    .app-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .logo {
+      height: 4em;
+      padding: 1em;
+      transition: filter 0.3s;
+    }
+
+    .logo:hover {
+      filter: drop-shadow(0 0 0.5rem #646cffaa);
+      animation: rotateLogo 1s linear forwards;
+    }
+
+    @keyframes rotateLogo {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .logo.react:hover {
+      filter: drop-shadow(0 0 0.5rem #61dafbaa);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .card {
+      background-color: var(--bg-color);
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 2em;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .color-picker-container {
+      margin-bottom: 20px;
+    }
+
+    .favorites-container,
+    .popular-container {
+      margin-bottom: 20px;
+    }
+
+    .container-title {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .color-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .color-box {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .color-box:hover {
+      transform: scale(1.05);
+    }
+
+    .color-name {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 0.5em;
+      text-align: center;
+      font-size: 0.8em;
+    }
+
+    .like-button,
+    .remove-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      padding: 5px 10px;
+      font-size: 0.6em;
+      transition: background-color 0.3s;
+    }
+
+    .like-button:hover,
+    .remove-button:hover {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .uploaded-image {
+        max-height: 300px;
+        max-width: 100%; /* Ensures the width adjusts proportionally */
+        background-color: transparent;
+        display: block; /* Ensures the image behaves as a block element */
+        width: auto; /* Allows the image to adjust its width */
+        height: auto; /* Allows the image to adjust its height */
+        object-fit: contain; /* Maintains aspect ratio without deformation */
+    }
+
+    .download-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .download-container button {
+        border-radius: 36px; /* Apply the same border-radius as the "Add to Favorites" button */
+        background: #FEE996;
+        padding: 10px 20px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .download-container button:hover {
+        background-color: #21adb0;
+    }
+
+    .read-the-docs {
+      color: #888;
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+
+    .color-picker-image-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .color-picker-container,
+    .image-upload-container {
+      width: 48%;
+    }
+
+.image-container {
+    width: auto; /* Allow container to adjust dynamically based on content */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden; /* Add overflow: hidden to prevent image overflow */
+}
+
+    @media (max-width: 768px) {
+    .color-picker-image-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .color-picker-container,
+    .image-upload-container,
+    .image-container {
+        width: 100%;
+    }
+    }
+
+
+    .favorite-button-container {
+      margin-top: 20px;
+    }
+
+    /* Style for "View More" button */
+    .add-favorite-button {
+        border-radius: 36px;
+        background: #FEE996;
+        padding: 10px 20px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .add-favorite-button:hover {
+        background-color: #21adb0;
+    }
+
+
+    .space {
+      width: 5px;
+    }
+
+    .light {
+      --bg-color: #ffffff;
+    }
+
+    .dark {
+      --bg-color: #333333;
+      --text-color: #ffffff;
+    }
+  </style>
+</head>
+<body class="app-container light">
+    <header class="header">
+
+    </header>
+    <div class="card">
+        <div class="color-picker-image-container">
+        <div class="color-picker-container">
+            <input type="color" id="colorPicker" value="#000000" />
+        </div>
+        <div class="space"></div>
+        <div class="image-upload-container">
+            <input type="file" id="imageUpload" accept="image/*" />
+        </div>
+        <div id="imageContainer" class="image-container" style="display:none;">
+        <img id="uploadedImage" class="uploaded-image" src="" alt="Uploaded" />
+        <div class="download-container">
+          <button id="downloadButton">Download Image</button>
+        </div>
+      </div>
+    </div>
+    <div class="favorite-button-container">
+      <button class="add-favorite-button" id="addFavoriteButton">
+        <i class="fas fa-star"></i> Add to Favorites
+      </button>
+    </div>
+    <div id="notification" class="notification" style="display:none;"></div>
+    <div class="favorites-container">
+      <h2>Your Favorite Colors</h2>
+      <div id="favoriteColors" class="color-list"></div>
+    </div>
+    <div class="popular-container">
+      <h2>Popular Colors</h2>
+      <div id="popularColors" class="color-list"></div>
+    </div>
+    <div class="theme-toggle-container">
+      <button id="themeToggleButton" class="theme-toggle-button">Switch to Dark Mode</button>
+    </div>
+  </div>
+
+    <script>
+        const colorPicker = document.getElementById('colorPicker');
+        const imageUpload = document.getElementById('imageUpload');
+        const uploadedImage = document.getElementById('uploadedImage');
+        const imageContainer = document.getElementById('imageContainer');
+        const downloadButton = document.getElementById('downloadButton');
+        const addFavoriteButton = document.getElementById('addFavoriteButton');
+        const notification = document.getElementById('notification');
+        const favoriteColorsContainer = document.getElementById('favoriteColors');
+        const popularColorsContainer = document.getElementById('popularColors');
+        const themeToggleButton = document.getElementById('themeToggleButton');
+        const body = document.body;
+
+        let currentColor = '#000000';
+        let likedPopularColors = JSON.parse(localStorage.getItem('likedPopularColors')) || {};
+        let favoriteColors = JSON.parse(localStorage.getItem('favoriteColors')) || [];
+        let uploadedImageData = localStorage.getItem('uploadedImageData');
+
+        const popularColors = [
+            { color: '#08D9D6', liked: likedPopularColors[0] || false },
+            { color: '#252A34', liked: likedPopularColors[1] || false },
+            { color: '#FF2E63', liked: likedPopularColors[2] || false }
+        ];
+
+        const updatePopularColors = () => {
+            popularColorsContainer.innerHTML = '';
+            popularColors.forEach((popColor, index) => {
+            const colorBox = document.createElement('div');
+            colorBox.className = 'color-box';
+            colorBox.style.backgroundColor = popColor.color;
+            colorBox.innerHTML = `
+                <div class="color-name">${popColor.color}</div>
+                <button class="like-button" onclick="likeColor(${index})">${popColor.liked ? 'Unlike' : 'Like'}</button>
+            `;
+            popularColorsContainer.appendChild(colorBox);
+            });
+        };
+
+        const updateFavoriteColors = () => {
+            favoriteColorsContainer.innerHTML = '';
+            favoriteColors.forEach((favColor, index) => {
+            const colorBox = document.createElement('div');
+            colorBox.className = 'color-box';
+            colorBox.style.backgroundColor = favColor;
+            colorBox.innerHTML = `
+                <div class="color-name">${favColor}</div>
+                <button class="remove-button" onclick="removeFavoriteColor(${index})">Remove</button>
+            `;
+            favoriteColorsContainer.appendChild(colorBox);
+            });
+        };
+
+        const likeColor = (index) => {
+        popularColors[index].liked = !popularColors[index].liked;
+        likedPopularColors[index] = popularColors[index].liked;
+        updatePopularColors();
+        localStorage.setItem('likedPopularColors', JSON.stringify(likedPopularColors));
+        
+        // If liked, add to favorites; if unliked, remove from favorites
+        if (popularColors[index].liked) {
+            favoriteColors.push(popularColors[index].color);
+        } else {
+            const removeIndex = favoriteColors.indexOf(popularColors[index].color);
+            if (removeIndex !== -1) {
+            favoriteColors.splice(removeIndex, 1);
+            }
+        }
+        updateFavoriteColors();
+        localStorage.setItem('favoriteColors', JSON.stringify(favoriteColors));
+        };
+
+
+        const removeFavoriteColor = (index) => {
+            favoriteColors.splice(index, 1);
+            updateFavoriteColors();
+            localStorage.setItem('favoriteColors', JSON.stringify(favoriteColors));
+        };
+
+        colorPicker.addEventListener('input', (event) => {
+            currentColor = event.target.value;
+            imageContainer.style.backgroundColor = currentColor;
+        });
+
+        imageUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+            uploadedImage.src = e.target.result;
+            uploadedImage.onload = () => {
+                const aspectRatio = uploadedImage.naturalWidth / uploadedImage.naturalHeight;
+                if (aspectRatio > 1) {
+                uploadedImage.style.width = '100%';
+                uploadedImage.style.height = 'auto';
+                } else {
+                uploadedImage.style.width = 'auto';
+                uploadedImage.style.height = '100%';
+                }
+                imageContainer.style.display = 'block';
+                imageContainer.style.backgroundColor = currentColor;
+                // Save the uploaded image data to local storage
+                uploadedImageData = e.target.result;
+                localStorage.setItem('uploadedImageData', uploadedImageData);
+            };
+            };
+            reader.readAsDataURL(file);
+        });
+
+        downloadButton.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = uploadedImage.src;
+            link.download = 'downloaded-image.png';
+            link.click();
+        });
+
+        addFavoriteButton.addEventListener('click', () => {
+            favoriteColors.push(currentColor);
+            updateFavoriteColors();
+            localStorage.setItem('favoriteColors', JSON.stringify(favoriteColors));
+            notification.textContent = `Added ${currentColor} to favorites!`;
+            notification.style.display = 'block';
+            setTimeout(() => {
+            notification.style.display = 'none';
+            }, 2000);
+        });
+
+        themeToggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+            themeToggleButton.textContent = 'Switch to Light Mode';
+            } else {
+            themeToggleButton.textContent = 'Switch to Dark Mode';
+            }
+        });
+
+        // Set the uploaded image source if it exists in local storage
+        if (uploadedImageData) {
+            uploadedImage.src = uploadedImageData;
+            imageContainer.style.display = 'block';
+        }
+
+        updatePopularColors();
+        updateFavoriteColors();
+    </script>
+</body>
+</html>
+
+<%- include('partials/footer'); -%>

@@ -1,3 +1,7 @@
+require('@babel/register')({
+  extensions: ['.js', '.jsx']
+});
+
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
@@ -24,4 +28,12 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', requireAuth, (req, res) => res.render('smoothies'));
+app.get('/color-picker', requireAuth, (req, res) => res.render('color-picker'));
+
+const ColorPicker = require('./components/ColorPicker');
+
+// Routes...
+app.get('/color-picker', requireAuth, (req, res) => {
+  res.render('color-picker', { title: 'Color Picker', colorPicker: ColorPicker });
+});
 app.use(authRoutes);
