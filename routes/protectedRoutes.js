@@ -1,9 +1,6 @@
-// routes/protectedRoutes.js
-
-const { Router } = require('express');
+const express = require('express');
+const router = express.Router();
 const { requireAuth, checkRole, checkPermission } = require('../middleware/authMiddleware');
-
-const router = Router();
 
 router.get('/admin', requireAuth, checkRole(['ADMIN']), (req, res) => res.render('admin'));
 router.get('/writer', requireAuth, checkRole(['WRITER']), (req, res) => res.render('writer'));

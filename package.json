@@ -1,9 +1,10 @@
 {
-  "name": "node-express-jwt-auth",
+  "name": "node-auth",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "start": "node app.js",
     "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
     "@babel/register": "^7.24.6",
