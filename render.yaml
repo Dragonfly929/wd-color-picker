@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: node-auth
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node app.js
+    envVars:
+      - key: dbURI
+        value: mongodb+srv://user:password321@cluster0.bjoawvi.mongodb.net/node-auth
